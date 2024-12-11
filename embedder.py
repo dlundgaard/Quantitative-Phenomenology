@@ -6,7 +6,8 @@ def main():
     database = pd.read_parquet("data/database_preprocessed.parquet")
     corpus = database["content"].values
 
-    model = sentence_transformers.SentenceTransformer("nvidia/NV-Embed-v2", trust_remote_code=True)
+    # model = sentence_transformers.SentenceTransformer("nvidia/NV-Embed-v2", trust_remote_code=True)
+    model = sentence_transformers.SentenceTransformer("data/transformer_models/NV-Embed-v2.model", trust_remote_code=True)
 
     embeddings = model.encode(
        corpus,

@@ -2,7 +2,8 @@
 !.gitignore
 !requirements.txt
 !theme.mplstyle
+!embedder.py
+!modeling.Rmd
 !scraper.ipynb
 !workbook.ipynb
-!embedder.py
 !README.md
