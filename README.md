@@ -1,4 +1,4 @@
-Companion repository of the B.Sc. Cognitive Science thesis paper, _Quantitative Phenomenology: Vector-Embedding Psychedelic Trip Reports_.
+Companion repository of the B.Sc. Cognitive Science thesis paper, _Quantitative Phenomenology: Embedding Psychedelic Trip Reports_.
 
 - Data collection was conducted using functionality defined in `scraper.ipynb`. 
 - `embedder.py` was used to parallelize the process of computing embeddings.
