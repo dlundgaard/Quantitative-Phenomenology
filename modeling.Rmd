@@ -2,9 +2,9 @@
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_knit$set(root.dir = "Quantitative Phenomenology")
 
-# install.packages("cmdstanr", repos = c("https://mc-stan.org/r-packages/", getOption("repos")))
+install.packages("cmdstanr", repos = c("https://mc-stan.org/r-packages/", getOption("repos")))
 library(cmdstanr)
-# installinst_cmdstan()
+install_cmdstan()
 
 library(tidyverse)
 library(brms)
@@ -53,7 +53,7 @@ completed
 
 ```{r}
 # fit <- brm(
-#   formula = bf(OBN ~ 0 + substance + gender + age_at_experience + years_since_experience + (1 | author)) + set_rescor(FALSE),
+#   formula = bf(OBN ~ 0 + substance + gender + age_at_experience + (1 | author)) + set_rescor(FALSE),
 #   family = gaussian(),
 #   # prior = c(
 #   #   prior_string("normal(0, 2.5)", class = "Intercept", dpar = contrast_categories),
@@ -89,9 +89,9 @@ completed
 ```{r}
 fit <- brm(
   formula = (
-    bf(OBN ~ 0 + substance + gender + age_at_experience + years_since_experience + (1 | author)) +
-    bf(AED ~ 0 + substance + gender + age_at_experience + years_since_experience + (1 | author)) +
-    bf(VIR ~ 0 + substance + gender + age_at_experience + years_since_experience + (1 | author))
+    bf(OBN ~ 0 + substance + gender + age_at_experience + (1 | author)) +
+    bf(AED ~ 0 + substance + gender + age_at_experience + (1 | author)) +
+    bf(VIR ~ 0 + substance + gender + age_at_experience + (1 | author))
   ) + set_rescor(TRUE),
   family = gaussian,
   # data = data,
@@ -184,8 +184,3 @@ for (focused_dimension in c("OBN", "AED", "VIR")) {
 
 write.table(all_draws, "data/model_fit.csv", sep = ",")
 ```
-
-
-
-
-
