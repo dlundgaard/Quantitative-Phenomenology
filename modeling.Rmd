@@ -37,7 +37,7 @@ data <- read_csv("data/database_processed.csv") %>%
   mutate(
     substance = factor(substance, levels = substance_selection),
     # author = factor(na_if(author, -1)),
-    gender = factor(gender),
+    sex = factor(sex),
   )
 
 data
@@ -53,7 +53,7 @@ completed
 
 ```{r}
 # fit <- brm(
-#   formula = bf(OBN ~ 0 + substance + gender + age_at_experience + (1 | author)) + set_rescor(FALSE),
+#   formula = bf(OBN ~ 0 + substance + sex + age_at_experience + (1 | author)) + set_rescor(FALSE),
 #   family = gaussian(),
 #   # prior = c(
 #   #   prior_string("normal(0, 2.5)", class = "Intercept", dpar = contrast_categories),
@@ -89,9 +89,9 @@ completed
 ```{r}
 fit <- brm(
   formula = (
-    bf(OBN ~ 0 + substance + gender + age_at_experience + (1 | author)) +
-    bf(AED ~ 0 + substance + gender + age_at_experience + (1 | author)) +
-    bf(VIR ~ 0 + substance + gender + age_at_experience + (1 | author))
+    bf(OBN ~ 0 + substance + sex + age_at_experience + (1 | author)) +
+    bf(AED ~ 0 + substance + sex + age_at_experience + (1 | author)) +
+    bf(VIR ~ 0 + substance + sex + age_at_experience + (1 | author))
   ) + set_rescor(TRUE),
   family = gaussian,
   # data = data,
@@ -159,7 +159,7 @@ for (focused_dimension in c("OBN", "AED", "VIR")) {
   
   data$focused_dimension <- pull(data, focused_dimension)
   fit <- brm(
-    formula = bf(focused_dimension ~ 0 + substance + gender + age_at_experience + years_since_experience + (1 | author)),
+    formula = bf(focused_dimension ~ 0 + substance + sex + age_at_experience + years_since_experience + (1 | author)),
     family = gaussian,
     data = data,
     backend = "cmdstanr",
